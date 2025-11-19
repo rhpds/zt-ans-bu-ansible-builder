@@ -77,8 +77,6 @@ Try the next tasks yourself:
 
 This was the final challenge, and hopefully this lab has helped you understand the changes in `ansible-builder` v3 and its benefits.
 
-== 🐛 Encountered an issue?
+== Troubleshooting
 
-If you have encountered an issue or noticed something not quite right, please open an issue:  
-
-https://github.com/ansible/workshops/issues
+If you have encountered an issue or have noticed something not quite right, please link:https://github.com/ansible/workshops/issues/new?labels=ansibe-builder&title=Issue+with+Getting+started+with+ansible-builder&assignees=abwalczyk[open an issue on GitHub].
