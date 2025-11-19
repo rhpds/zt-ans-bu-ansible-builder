@@ -132,6 +132,7 @@ ansible-builder build -v 3
 A bit about the command: we are not specifying the definition file name as we used the default name, and `-v 3` signifies the verbosity level of the output.  
 You will see the build steps when you run this command.  
 Adding `-v 3` is optional.
+abwalczyk
 
 [NOTE]
 ====
@@ -189,8 +190,7 @@ In the next challenge, we will look at how to pull collections from Automation H
 
 Press the *Next* button below to go to the next challenge once you’ve completed the tasks.
 
-== 🐛 Encountered an issue?
+== Troubleshooting
 
-If you have encountered an issue or noticed something not quite right, please open an issue here:
+If you have encountered an issue or have noticed something not quite right, please link:https://github.com/ansible/workshops/issues/new?labels=ansibe-builder&title=Issue+with+Getting+started+with+ansible-builder&assignees=abwalczyk[open an issue on GitHub].
 
-https://github.com/ansible/workshops/issues
