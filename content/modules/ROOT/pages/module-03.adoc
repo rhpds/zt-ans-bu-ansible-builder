@@ -151,8 +151,7 @@ In the next challenge, we will try to fix the certificate errors properly.
 
 Press the *Next* button below to go to the next challenge once you’ve completed the tasks.
 
-== 🐛 Encountered an issue?
+== Troubleshooting
 
-If you have encountered an issue or have noticed something not quite right, please open an issue at:
+If you have encountered an issue or have noticed something not quite right, please link:https://github.com/ansible/workshops/issues/new?labels=ansibe-builder&title=Issue+with+Getting+started+with+ansible-builder&assignees=abwalczyk[open an issue on GitHub].
 
-https://github.com/ansible/workshops/issues
