@@ -73,10 +73,12 @@
       src: "./setup-{{ ansible_host }}.sh"
       dest: "/tmp/setup-scripts/setup-{{ ansible_host }}.sh"
     register: r_result
-
+  - name: Include secrets var
+    include_vars: ../config/secrets.yaml
+    
   - name: Execute setup-node.sh if it exists
     when: r_script_test.stat.exists
-    shell: "sh -x /tmp/setup-scripts/setup-{{ ansible_host }}.sh > /tmp/setup-scripts/setup-{{ ansible_host }}.log 2>&1"
+    shell: "sh /tmp/setup-scripts/setup-{{ ansible_host }}.sh > /tmp/setup-scripts/setup-{{ ansible_host }}.log 2>&1"
     become: true
     register: r_result
     environment:
@@ -85,7 +87,9 @@
       SATELLITE_ACTIVATIONKEY: "{{ satellite_activationkey }}"
       GUID: "{{ guid }}"
       DOMAIN: "{{ domain }}"
-
+      ZEROSSL_EAB_KEY_ID: "{{ zerossl_eab_key_id }}"
+      ZEROSSL_HMAC_KEY: "{{ zerossl_hmac_key }}"
+      
   - name: Output script result
     ansible.builtin.debug:
       var: r_result.stdout
