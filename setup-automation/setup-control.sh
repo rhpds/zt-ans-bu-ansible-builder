@@ -2,22 +2,32 @@
 set -e
 
 retry() {
+    # $1 is the command string
+    # $2 is the description for the echo (optional)
+    local cmd="$1"
     for i in {1..3}; do
-        echo "Attempt $i: $2"
-        if $1; then
+        echo "Attempt $i: ${2:-$cmd}"
+        # Use eval to properly parse the command string and its arguments
+        if eval "$cmd"; then
             return 0
         fi
         [ $i -lt 3 ] && sleep 5
     done
-    echo "Failed after 3 attempts: $2"
+    echo "Failed after 3 attempts: ${2:-$cmd}"
     exit 1
 }
+
+# ... rest of your variables (SATELLITE_URL, etc.) ...
 
 retry "subscription-manager clean"
 retry "curl -k -L https://${SATELLITE_URL}/pub/katello-server-ca.crt -o /etc/pki/ca-trust/source/anchors/${SATELLITE_URL}.ca.crt"
 retry "update-ca-trust"
-KATELLO_INSTALLED=$(rpm -qa | grep -c katello)
-if [ $KATELLO_INSTALLED -eq 0 ]; then
+
+# Check if Katello is installed
+KATELLO_INSTALLED=$(rpm -qa | grep -c katello || true) 
+
+if [ "$KATELLO_INSTALLED" -eq 0 ]; then
+  # This will now work correctly with eval
   retry "rpm -Uhv https://${SATELLITE_URL}/pub/katello-ca-consumer-latest.noarch.rpm"
 fi
 subscription-manager status
