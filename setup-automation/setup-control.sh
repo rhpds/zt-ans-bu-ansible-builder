@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e
 
+subscription-manager clean
+curl -k  -L https://${SATELLITE_URL}/pub/katello-server-ca.crt -o /etc/pki/ca-trust/source/anchors/${SATELLITE_URL}.ca.crt
+update-ca-trust
+rpm -Uhv https://${SATELLITE_URL}/pub/katello-ca-consumer-latest.noarch.rpm || true
+
+subscription-manager status >/dev/null 2>&1 || \
+  subscription-manager register --org=${SATELLITE_ORG} --activationkey=${SATELLITE_ACTIVATIONKEY} --force
+setenforce 0
 
 # Enable standard RHEL repos if available
 sudo dnf config-manager --set-enabled rhel-9-baseos-rpms rhel-9-appstream-rpms || true
