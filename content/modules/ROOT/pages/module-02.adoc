@@ -132,7 +132,6 @@ ansible-builder build -v 3
 A bit about the command: we are not specifying the definition file name as we used the default name, and `-v 3` signifies the verbosity level of the output.  
 You will see the build steps when you run this command.  
 Adding `-v 3` is optional.
-abwalczyk
 
 [NOTE]
 ====
